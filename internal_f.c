@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 09:42:38 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:01:36 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	grab_fork_and_die(t_human *hum)
 	printf("%d %d has taken a fork\n", \
 		timestamp(hum, hum->res->time), hum->name);
 	pthread_mutex_unlock(hum->res->mfork);
-	usleep_split(hum, hum->res->time, e_time_to_die, 0);
+	usleep_split(hum, hum->res->time, e_time_to_die);
 	pthread_mutex_lock(hum->res->mfork);
 	printf("%d %d died\n", timestamp(hum, hum->res->time), hum->name);
 	hum->res->tomb[0] = 1;

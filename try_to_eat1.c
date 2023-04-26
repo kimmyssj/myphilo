@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 09:19:56 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:01:03 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	eat(t_human *hum, struct timeval *last_time, int flag)
 		hum->res->count = hum->res->count + hum->ate_numb;
 	pthread_mutex_unlock(&hum->res->mutex);
 	gettimeofday(last_time, NULL);
-	usleep_split(hum, *last_time, e_time_to_eat, 0);
+	usleep_split(hum, *last_time, e_time_to_eat);
 	let_it_go(hum, flag);
 	hum->flag = 0;
 	return (e_success);

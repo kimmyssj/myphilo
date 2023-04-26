@@ -6,12 +6,12 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:23:23 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 08:55:09 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 21:05:18 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-# define PIPEX_H
+# define PHILO_H
 
 # include <unistd.h>
 # include <string.h>
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <stdio.h>
 
-enum
+enum	e_status
 {
 	e_eating,
 	e_sleeping,
@@ -29,13 +29,13 @@ enum
 	e_no_print
 };
 
-enum
+enum	e_fail_or_success
 {
 	e_fail,
 	e_success
 };
 
-enum
+enum	e_orders
 {
 	e_philo = 0,
 	e_nbr_of_philosophers = 1,
@@ -45,7 +45,7 @@ enum
 	e_must_eat = 5
 };
 
-enum
+enum e_position
 {
 	e_max,
 	e_novice
@@ -85,8 +85,7 @@ int				check_both_hands(t_human *hum, int flag);
 int				grab_fork_max(t_human *hum, struct timeval *last_time);
 int				grab_fork_novice(t_human *hum, struct timeval *last_time);
 int				*make_fork_and_tomb(int num);
-void			usleep_split1(int time);
-void			usleep_split(t_human *h, struct timeval t, int f, int f1);
+void			usleep_split(t_human *h, struct timeval t, int f);
 void			print_in_mutex(t_human *hum, int flag);
 void			destroy_all_mutex(t_resource *res, int *arr);
 void			*internal_f(void *arg);

@@ -6,7 +6,7 @@
 /*   By: seungjki <seungjki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 09:11:34 by seungjki          #+#    #+#             */
-/*   Updated: 2023/04/26 09:17:02 by seungjki         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:51:57 by seungjki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,21 @@ int	timestamp(t_human *hum, struct timeval time)
 		time1.tv_usec / 1000 - time.tv_usec / 1000);
 }
 
-void	usleep_split(t_human *hum, struct timeval time, int flag, int flag1)
+void	usleep_split(t_human *hum, struct timeval time1, int flag)
 {
-	int	resttime;
+	int				resttime;
+	struct timeval	time;
 
 	if (hum->arr[e_nbr_of_philosophers] > 5)
 		resttime = 6 * hum->arr[e_nbr_of_philosophers];
 	else
 		resttime = 30;
-	if (flag1 == 0)
-		gettimeofday(&time, NULL);
+	gettimeofday(&time, NULL);
 	while (1)
 	{
 		usleep(resttime);
+		if (check_dead_or_ate(hum, &time1, e_no_print) == NULL)
+			break ;
 		pthread_mutex_lock(&hum->res->mutex);
 		if (timestamp(hum, time) >= hum->arr[flag])
 			break ;
